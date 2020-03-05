@@ -13,16 +13,134 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 //require_once('logErrorRMQ.php');
 
-function doLogin($username, $password)
+/*
+// AUTH FOR DB [JL]
+function getDBconnect()
 {
-    echo 'Loging in...';
-
-    # Run database query here to validate credentials
-    if ($username == 'admin' && $password == 'pass') {
-        return 'success';
-    } else {
-        return 'fail';
+    $db = mysqli_connect("192.168.1.11","user_test","passwd","test"); //will need valid creds
+    if (!$db)
+    {
+        die("The Connection has failed: ".mysqli_connect_error());
     }
+    return $db;
+}
+
+//CREATING A NEW ACCOUNT
+function newAccount($user,$pass,$fname,$lname)
+{
+    $db = getDBconnect();    //connect 2 DB
+
+    //SQL STATEMENT
+    $s = "INSERT INTO Accounts (username, password, firstname, lastname, id) VALUES 
+    ('$user', '$pass', '$fname', '$lname', default)";
+    $result = mysqli_query($db, $s);
+
+    //Select by ID
+    $id = null;
+    $s2 = "SELECT * FROM Accounts WHERE username= '$user'";
+    $result = mysqli_query($db, $s2);
+
+    if(mysqli_num_rows($result) > 0)
+    {
+        while($row = mysqli_fetch_assoc($result))
+        {
+            $id = row['id'];
+        }
+    }
+    //else could be here
+
+    //Returns array
+    return array(
+        "username" => $user,
+        "password" => $pass,
+        "firstname" => $fname,
+        "lastname" => $lname,
+        "id" => $id,
+    );
+    mysqli_close($db);
+
+}
+
+
+function showAccount($id)
+{
+    $user = "";
+    $fname = "";
+    $lname = "";
+
+    //SQL STATEMENT
+    $db = getDBconnect();
+    $s = "SELECT username, firstname, lastname FROM Accounts WHERE id = $id";
+    $result = mysqli_query($db, $s);
+
+    if(mysqli_num_rows($result) > 0)
+    {
+        while($row = mysqli_fetch_assoc($result))
+        {
+            //TO SHOW THE OUTPUT
+            $user = row['username'];
+            $fname = row['firstname'];
+            $lname = row['lastname'];
+
+            echo "User: $user <b>|</b> ";
+            echo "First Name: $fname <b>|</b> ";
+            echo "Last Name: $lname <b>|</b> <br><br>"; 
+
+        }
+    }
+    
+    //GET ACCOUNT DETAILS FROM DB/ADD TO RESPONSE
+    return array(
+        "username" => $user,
+        "firstname" => $fname,
+        "lastname" => $lname,
+    );
+
+    mysqli_close($db);
+}
+*/
+
+
+function doLogin($user, $pass)
+{
+    echo 'Logging in...';
+
+  /*  # Run database query here to validate credentials
+    $db = getDBconnect();
+    $s = "SELECT * FROM Accounts WHERE username='$user' AND 
+    password='$pass'";
+    $result = mysqli_query($db, $s);
+
+    $yes = false;
+    $id = "";
+    $text = "";
+*/
+   /* if(mysqli_num_rows($result) > 0)
+    {
+        while($row = mysqli_fetch_assoc($result))
+        {
+            $id = row["id"];
+            $yes = true;
+        }
+    }*/
+    if($user == 'admin' && $pass == 'pass') 
+    {
+        return 'success';
+    }
+    else
+    {
+        return 'Fail';
+       // $text = "User does not exist.";
+    }
+  /*  //GET ACCOUNT DETAILS FROM DB/ADD TO RESPONSE
+    return array(
+        "success" => $yes, //or "yes"
+        "id" => $id,
+        "text" => $text,
+    ); */
+
+
+   
 }
 
 

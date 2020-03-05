@@ -14,11 +14,17 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 
 // Grab POST data sent by axios in front-end
-$request = file_get_contents('php://input');
+// $request = file_get_contents('php://input');
+
+// $request = json_decode($request);
+// echo $request;
+// echo '[x] Payload sent';
+$request = $_POST;
+// echo $request;
 
 // Decode from JSON into object
-$request = json_decode($request, true);
-print_r($request);
+// $request = json_decode($request, true);
+// print_r($request);
 
 // Make connection as client
 $client = new rabbitMQClient("RabbitMQ.ini", "testServer");
