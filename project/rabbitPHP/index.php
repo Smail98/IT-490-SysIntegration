@@ -4,12 +4,16 @@
 
   <h2>Login Form</h2>
   <form action="http://localhost/rabbitPHP/back-end/RabbitMQClient.php" method="POST">
-    <label for="fname">First name:</label><br>
-    <input type="text" id="fname" name="username"><br>
-    <label for="lname">Last name:</label><br>
-    <input type="text" id="lname" name="password"><br><br>
-    <input type="text" id="lname" name="type" value="login" readonly><br><br>
-    <input type="submit">
+    <label for="user">User:</label><br>
+    <input type="text" id="user" name="username"><br><br>
+    <label for="pass">Pass:</label><br>
+    <input type="text" id="pass" name="password"><br><br>
+    <label for="fname">Firstname:</label><br>
+    <input type="text" id="fname" name="firstname"><br><br>
+    <label for="lname">Lastname:</label><br>
+    <input type="text" id="lname" name="lastname"><br><br>
+    <input type="text" id="login" name="type" value="login" readonly ><br><br>
+   <input type="submit">
   </form>
 
 

@@ -13,15 +13,17 @@ require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 //require_once('logErrorRMQ.php');
 
-/*
+
 // AUTH FOR DB [JL]
 function getDBconnect()
 {
-    $db = mysqli_connect("192.168.1.11","user_test","passwd","test"); //will need valid creds
+    $db = mysqli_connect("localhost","testU","pass","testDB"); //will need valid creds
     if (!$db)
     {
-        die("The Connection has failed: ".mysqli_connect_error());
+        echo "database fail  ";
+        die ("The Connection has failed: ".mysqli_connect_error());
     }
+    echo " database success    ";
     return $db;
 }
 
@@ -29,22 +31,31 @@ function getDBconnect()
 function newAccount($user,$pass,$fname,$lname)
 {
     $db = getDBconnect();    //connect 2 DB
-
+    // echo 'hello';
+    //$x = 1;
     //SQL STATEMENT
-    $s = "INSERT INTO Accounts (username, password, firstname, lastname, id) VALUES 
-    ('$user', '$pass', '$fname', '$lname', default)";
+    $s = "INSERT INTO Accounts (username, password, firstname, lastname) VALUES 
+    ('$user', '$pass', '$fname', '$lname')";
     $result = mysqli_query($db, $s);
+
+    echo ' New User has been created!';
+    
+    if (!$result) {
+        echo mysqli_error($db);
+    }
+    //echo $result;
 
     //Select by ID
     $id = null;
     $s2 = "SELECT * FROM Accounts WHERE username= '$user'";
-    $result = mysqli_query($db, $s2);
+    $result = mysqli_query($db,$s2);
+    $num = mysqli_num_rows ($result);
 
-    if(mysqli_num_rows($result) > 0)
+    if($num > 0)
     {
-        while($row = mysqli_fetch_assoc($result))
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
         {
-            $id = row['id'];
+            $id = $row['id'];
         }
     }
     //else could be here
@@ -59,34 +70,38 @@ function newAccount($user,$pass,$fname,$lname)
     );
     mysqli_close($db);
 
-}
+} 
 
 
-function showAccount($id)
+function showAccount($user)
 {
-    $user = "";
+   //$user = "";
     $fname = "";
-    $lname = "";
+   $lname = "";
 
     //SQL STATEMENT
     $db = getDBconnect();
-    $s = "SELECT username, firstname, lastname FROM Accounts WHERE id = $id";
+    $s = "SELECT username, firstname, lastname FROM Accounts WHERE username = '$user'";
     $result = mysqli_query($db, $s);
 
-    if(mysqli_num_rows($result) > 0)
+    $num = mysqli_num_rows($result);
+    if($num > 0)
     {
-        while($row = mysqli_fetch_assoc($result))
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
         {
             //TO SHOW THE OUTPUT
-            $user = row['username'];
-            $fname = row['firstname'];
-            $lname = row['lastname'];
+            $user = $row['username'];
+            $fname = $row['firstname'];
+            $lname = $row['lastname'];
 
-            echo "User: $user <b>|</b> ";
-            echo "First Name: $fname <b>|</b> ";
-            echo "Last Name: $lname <b>|</b> <br><br>"; 
+            echo "    User: $user | ";
+            echo "First Name: $fname  |";
+            echo "Last Name: $lname   "; 
 
         }
+    }
+    else{
+        echo "     No Valid Users to Show";
     }
     
     //GET ACCOUNT DETAILS FROM DB/ADD TO RESPONSE
@@ -98,46 +113,46 @@ function showAccount($id)
 
     mysqli_close($db);
 }
-*/
+
 
 
 function doLogin($user, $pass)
 {
     echo 'Logging in...';
 
-  /*  # Run database query here to validate credentials
+    # Run database query here to validate credentials
     $db = getDBconnect();
     $s = "SELECT * FROM Accounts WHERE username='$user' AND 
     password='$pass'";
+   // echo $db;
     $result = mysqli_query($db, $s);
 
-    $yes = false;
+    /*$yes = false;
     $id = "";
-    $text = "";
-*/
-   /* if(mysqli_num_rows($result) > 0)
+    $text = "";*/
+
+    $num = mysqli_num_rows($result);
+
+    if($num == 0)
     {
-        while($row = mysqli_fetch_assoc($result))
-        {
-            $id = row["id"];
-            $yes = true;
-        }
-    }*/
-    if($user == 'admin' && $pass == 'pass') 
+       return '    Fail --- Invalid credentials';
+    }
+    elseif($user == 'admin' && $pass == 'pass')
     {
         return 'success';
     }
     else
     {
-        return 'Fail';
-       // $text = "User does not exist.";
+        return '   SUCCESSFUL LOGIN';
+        /* return 'Fail';
+        $text = "User does not exist.";*/
     }
-  /*  //GET ACCOUNT DETAILS FROM DB/ADD TO RESPONSE
+    //GET ACCOUNT DETAILS FROM DB/ADD TO RESPONSE
     return array(
         "success" => $yes, //or "yes"
         "id" => $id,
         "text" => $text,
-    ); */
+    ); 
 
 
    
@@ -156,14 +171,18 @@ function requestProcessor($request)
             // Authenticate
             case "login":
                 $returnCode = 0;
-                $message = "request recieved successfully";
-                $payload = doLogin($request['username'], $request['password']);
+                $message = "request recieved successfully  ";
+            /* $payload = newAccount($request['username'],          
+                $request['password'], $request['firstname'], 
+                $request['lastname']); */                                       /*PAYLOAD FOR CREATING NEW ACCOUNT*/
+               // $payload = showAccount($request['username']);                 /*PAYLOAD FOR SHOWING ACCOUNT*/
+               $payload = doLogin($request['username'], $request['password']);  /*PAYLOAD FOR LOGGING IN*/
                 break;
 
             case "register":
                 $returnCode = 0;
                 $message = "request recieved successfully";
-                $payload = createAccount($request['firstName'], $request['lastName'], $request['username'], $request['password']);
+                $payload = createAccount($request['username'], $request['password'], $request['firstname'], $request['lastname']);
                 break;
 
             // Account details
