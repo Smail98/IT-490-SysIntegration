@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>Register Template · Bootstrap</title>
+    <title>Signin Template · Bootstrap</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/sign-in/">
 
@@ -45,30 +45,18 @@
     <link href="signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
-    <form class="form-signin" id="myForm" action="/register.php" onsubmit="return validateForm()" >
-  <h1 class="h3 mb-3 font-weight-normal">Register</h1>
-  <label for="inputUsername" class="sr-only">Username</label>
-  <input type="text" name="inputUsername" id="inputUsername" class="form-control" placeholder="Username" required>
-  <label for="inputFirstName" class="sr-only">First Name</label>
-  <input type="text" name="inputFirstName" id="inputFirstName" class="form-control" placeholder="First Name" required>
-  <label for="inputLastName" class="sr-only">Last Name</label>
-  <input type="text" name="inputLastName" id="inputLastName" class="form-control" placeholder="Last Name" required>
+    <form class="form-signin">
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
   <label for="inputPassword" class="sr-only">Password</label>
-  <input type="password" id="inputPassword1" class="form-control" placeholder="Password" required>
-  <label for="inputPassword" class="sr-only">Retype Password</label>
-  <input type="password" name="inputPassword2" id="inputPassword2" class="form-control" placeholder="Retype Password" required>
-  <button class="btn btn-lg btn-primary btn-block submit" type="submit">Register</button>
+  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 </form>
 </body>
-<script>
-  function validateForm() {
-  console.log("Hi")
-  var x = document.forms["myForm"]["inputPassword1"].value;
-  var y = document.forms["myForm"]["inputPassword2"].value;
-  if (x != y) {
-    alert("Passwords don't match");
-    return false;
-  }
-} 
-</script>
 </html>
