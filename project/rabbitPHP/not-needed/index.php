@@ -5,7 +5,7 @@
   <h2>Login Form</h2>
   <form action="http://localhost/rabbitPHP/back-end/RabbitMQClient.php" method="POST">
     <label for="user">User:</label><br>
-    <input type="text" id="user" name="username"><br><br>
+    <input type="text" id="user" name="username"><br>
     <label for="pass">Pass:</label><br>
     <input type="text" id="pass" name="password"><br><br>
     <label for="fname">Firstname:</label><br>
@@ -13,6 +13,7 @@
     <label for="lname">Lastname:</label><br>
     <input type="text" id="lname" name="lastname"><br><br>
     <input type="text" id="login" name="type" value="login" readonly ><br><br>
+    <//select name="option" id="option"
    <input type="submit">
   </form>
 
