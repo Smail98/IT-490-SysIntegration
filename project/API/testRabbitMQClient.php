@@ -7,15 +7,15 @@ require_once('rabbitMQLib.inc');
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 
 
-$request = array();
-$request['type'] = "login";
+//$request = array(); array is established
+//$request['type'] = "login";
 //$request['username'] = $argv[1];
 //$request['password'] = $argv[2];
-$request['message'] = "HI";
-echo"A";
+//$request['message'] = "HI";
+echo"A";//test echo
 //$response = $client->send_request($request);
-//$response = $client->publish($request);
-echo "B";
+//$response = $client->publish($request); establishes connection to MQ
+echo "B"; //test echo
 //echo "client received response: ".PHP_EOL;
 //print_r($response);
 echo "\n\n";
@@ -24,11 +24,11 @@ echo "\n\n";
 
 
 
-
+//conenct and pull data from API
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-	CURLOPT_URL => "https://the-cocktail-db.p.rapidapi.com/list.php?i=list",
+	CURLOPT_URL => "https://the-cocktail-db.p.rapidapi.com/list.php?i=gin",//api data
 	CURLOPT_RETURNTRANSFER => true,
 	CURLOPT_FOLLOWLOCATION => true,
 	CURLOPT_ENCODING => "",
@@ -38,18 +38,18 @@ curl_setopt_array($curl, array(
 	CURLOPT_CUSTOMREQUEST => "GET",
 	CURLOPT_HTTPHEADER => array(
 		"x-rapidapi-host: the-cocktail-db.p.rapidapi.com",
-		"x-rapidapi-key: f1ba87b70emsh49a2316b2620f92p12a26ejsnee56ecfc2c46"
+		"x-rapidapi-key: f1ba87b70emsh49a2316b2620f92p12a26ejsnee56ecfc2c46" //api key
 	),
 ));
 
 
 
 $respons= curl_exec($curl);
-echo $respons;
+echo $respons;//test to see if $respons contains api data
 $err = curl_error($curl);
 curl_close($curl);
 
-$respons = $client->publish($respons);
+$respons = $client->publish($respons); //print response
 if ($err) {
 	echo "cURL Error #:" . $err;
 } else {
