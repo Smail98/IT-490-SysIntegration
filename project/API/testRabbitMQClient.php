@@ -44,6 +44,10 @@ if ($err) {
 	echo "cURL Error #:" . $err;
 } else {
 	echo $respons;
-
-
-}
+//MQshovel queues test
+//PUT /api/parameters/shovel/%2f/my-shovel
+//{"value":{"src-protocol": "amqp091", "src-uri":  "amqp://",
+  //        "src-queue":  "my-queue",
+    //      "dest-protocol": "amqp091", "dest-uri": "amqp://remote-server",
+      //    "dest-queue": "another-queue"}}
+//}
