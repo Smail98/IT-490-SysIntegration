@@ -18,7 +18,7 @@ echo "B"; //test echo
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-	CURLOPT_URL => "https://the-cocktail-db.p.rapidapi.com/list.php?i=gin",//api data
+	CURLOPT_URL => "https://the-cocktail-db.p.rapidapi.com/filter.php?i=gin",//api data
 	CURLOPT_RETURNTRANSFER => true,
 	CURLOPT_FOLLOWLOCATION => true,
 	CURLOPT_ENCODING => "",
