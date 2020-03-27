@@ -13,7 +13,7 @@ echo "B"; //test echo
 //conenct and pull data from API
 $curl = curl_init();
 curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://the-cocktail-db.p.rapidapi.com/filter.php?i=gin",
+        CURLOPT_URL => "https://the-cocktail-db.p.rapidapi.com/filter.php?i=",
         $data = curl_exec($curl),
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_FOLLOWLOCATION => true,
