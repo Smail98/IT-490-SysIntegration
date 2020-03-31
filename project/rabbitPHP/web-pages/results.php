@@ -33,18 +33,18 @@ seshCheck();
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-		<li class="active"><a href="http://localhost/rabbitPHP/web-pages/Search.php">Home</a></li>
-		<li class="active"><a href="http://localhost/rabbitPHP/web-pages/Profile.php">Profile</a></li>
+		<li class="active"><a href="http://ec2-3-17-185-64.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/Search.php">Home</a></li>
+		<li class="active"><a href="http://ec2-3-17-185-64.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/Profile.php">Profile</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://localhost/rabbitPHP/web-pages/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        <li><a href="http://ec2-3-17-185-64.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
       </ul>
     </div>
   </div>
 </nav>
   
 <div class="container">
-  <form class="form-inline my-2 my-lg-0" action="http://localhost/rabbitPHP/web-pages/results.php" method="get">
+  <form class="form-inline my-2 my-lg-0" action="http://ec2-3-17-185-64.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/results.php" method="get">
    <h3>Add an Ingredient</h3>
     <input id="search" name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -52,24 +52,13 @@ seshCheck();
 
   <?php
 
-print("Hello");
+print("Hello");			//Remember 2 delete
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 ini_set('display_errors', 1);
-include( 'accounts.php' );
-include( 'functions.php' );
-$db = mysqli_connect($hostname, $username, $password);
-if (mysqli_connect_errno())
-{
-
-	echo "Failed to connect to MySQL.<br>";
-	exit();
-}
-print "<br>Succeessfuly connected to MySQL.<br>";
-mysqli_select_db($db, $project);
 
 $alc = $_GET ["search"];
 
-display ($alc, $db)
+display ($alc)
 
 ?>
 

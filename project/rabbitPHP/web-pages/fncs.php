@@ -53,7 +53,7 @@ function newAccount($user,$pass,$fname,$lname)
    
 
 
-    mysqli_close($db);
+    //mysqli_close($db);	//was uncommented before (gonna test something 3/30/20)
 
 }
 
@@ -238,7 +238,7 @@ function seshCheck()
     {
         $d = 3;
         echo "Please Login First -- Redirecting...";
-        header("refresh: $d; url= http://localhost/rabbitPHP/web-pages/login.html");
+        header("refresh: $d; url= http://ec2-3-17-185-64.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.html");
         exit();
     }
 }
@@ -252,4 +252,7 @@ function getData($o)
     $o1 = mysqli_real_escape_string($db,$o1);
     return $o1;
 }
+
+
+
 ?>

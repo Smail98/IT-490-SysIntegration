@@ -58,7 +58,7 @@ if ($response == 0)
     //echo "BAD LOG!";
     
     $d = 1;
-    header("refresh: $d; url= http://localhost/rabbitPHP/web-pages/login.php?user=$u&pass=$pw");
+    header("refresh: $d; url= http://ec2-3-17-185-64.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.php?user=$u&pass=$pw");
     //echo "Maybe this time";
 }
 elseif ($response == 1)
@@ -66,21 +66,21 @@ elseif ($response == 1)
     $d = 1;
     //echo "GOOD LOG!";
     //echo $response;
-    header("refresh: $d; url= http://localhost/rabbitPHP/web-pages/login.php?user=$u&pass=$pw");
+    header("refresh: $d; url= http://ec2-3-17-185-64.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.php?user=$u&pass=$pw");
 }
 elseif ($response == 2)
 {
     echo "User Already Exists -- Try Logging in";
 
     $d = 3;
-    header("refresh: $d; url= http://localhost/rabbitPHP/web-pages/login.html");
+    header("refresh: $d; url= http://ec2-3-17-185-64.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.html");
 }
 else{
 
     $d = 2;
     echo "New Account Has Been Created!";
     //echo $response;
-    header("refresh: $d; url= http://localhost/rabbitPHP/web-pages/login.php?user=$u&pass=$pw");
+    header("refresh: $d; url= http://ec2-3-17-185-64.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.php?user=$u&pass=$pw");
     
     
 }

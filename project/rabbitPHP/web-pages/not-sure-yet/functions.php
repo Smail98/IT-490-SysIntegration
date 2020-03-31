@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
+<title>Table with database</title>
+<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+table {
+border-collapse: collapse;
+width: 100%;
+color: #2F2F31;
+font-family: monospace;
+font-size: 25px;
+text-align: left;
+}
+th {
+background-color: #2F2F31;
+color: white;
+}
+tr:nth-child(even) {background-color: #f2f2f2}
+</style>
 </head>
 <body>
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -18,7 +32,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="#">Cocktail Finder</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -31,14 +45,33 @@
     </div>
   </div>
 </nav>
-  
-<div class="container">
-  <form class="form-inline my-2 my-lg-0">
-    <h3>Add an Ingredient</h3>
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
+<table>
+<tr>
+<th>Cocktail</th>
+<th>Presentation</th>
+</tr>
+<?php
 
-</div>
+function display($alc, $db)
+{
+	$s="SELECT * FROM cocktails WHERE stralc = '$alc'";
+
+	($h = mysqli_query($db, $s)) or die (mysqli_error());
+if ($h-> num_rows > 0){
+	while ($q = mysqli_fetch_array($h, MYSQLI_ASSOC))
+		{
+			$alc = $q["strDrink"];
+			$ing = $q["strDrinkThumb"];
+			
+			echo "<tr><td>" .$alc ."</td><td>" .$ing ."</td></tr>";
+		}
+	echo "</table>";	
+}
+else {
+	echo "0 results";
+}
+}
+?>
+</table>
 </body>
 </html>

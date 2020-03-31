@@ -14,14 +14,14 @@ include ('fncs.php');
 if(!doLogin($username, $password))
                 {
                     //echo "WTF IS YOU DOING!";
-                    header("refresh: 4; url = http://localhost/rabbitPHP/web-pages/login.html");
+                    header("refresh: 4; url = http://ec2-3-17-185-64.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.html");
                     
                 }
                 else
                 {
                     $_SESSION ["logged"] = true;
    
-                    header("refresh: 2; url = http://localhost/rabbitPHP/web-pages/Search.php");
+                    header("refresh: 2; url = http://ec2-3-17-185-64.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/Search.php");
                 }                  
 
 ?>

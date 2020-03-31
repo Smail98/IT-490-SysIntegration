@@ -1,8 +1,8 @@
 <?php
 
-$hostname = "localhost";    //CHANGE THESE TO MATCH YOUR
-$username = "testU";     //OWN DB CREDS
-$password = "pass";
+$hostname = "52.15.109.109";    //CHANGE TO MATCH ISMAIL CREDS
+$username = "user";     
+$password = "passwd";
 $project = "testDB";
 
 ?>
