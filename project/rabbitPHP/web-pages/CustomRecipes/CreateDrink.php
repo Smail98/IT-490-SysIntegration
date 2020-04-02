@@ -43,20 +43,21 @@ seshCheck();
             <a class="navbar-brand" href="#">Cocktail Finder</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="http://localhost/rabbitPHP/web-pages/Search.php">Home</a></li>
-                <li class="active"><a href="http://localhost/rabbitPHP/web-pages/Profile.php">Profile</a></li>
-                <li class="active"><a href="http://localhost/rabbitPHP/web-pages/CustomRecipe.php">Custom Recipe</a></li>
+	    <ul class="nav navbar-nav"
+		<li class="active"><a href="http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/Search.php">Home</a></li>
+                <li class="active"><a href="http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/Profile.php">Profile</a></li>
+		<li class="active"><a href="http://http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/CustomRecipes/CustomRecipe.php">Custom Recipe</a></li>
+		<li class="active"><a href="http://http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/Recommendation/recommend.php">Custom Recipe</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://localhost/rabbitPHP/web-pages/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                <li><a href="http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/rabbitPHP/web-pages/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
 <div class="container">
-    <br action="http://localhost/rabbitPHP/web-pages/CustomRecipe.php" class="form-inline my-2 my-lg-0" >
+    <br action="http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/CustomRecipes/CustomRecipe.php" class="form-inline my-2 my-lg-0" >
         <h3>Submit your recipe:</h3>
         <label for="DrinkName">Cocktail Name:</label><br>
         <input type="text" id="DrinkName" name="DrinkName"><br>
