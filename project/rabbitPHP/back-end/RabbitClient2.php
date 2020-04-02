@@ -22,57 +22,53 @@ require_once('rabbitMQLib.inc');
  //echo $request;
 
 
- echo '        [x] Payload sent', '<br><br><br>';
-$request = $_POST;
+// echo '        [x] Payload sent', '<br><br><br>';
+$request = $_GET["search"];
 //print_r($request);
 
-extract($request);
-$u = $username;
-$pw = $password;
-$t = $type;
+//echo $request;
 
 // Decode from JSON into object
  //$request = json_decode($request, true);
 // print_r($request);
  //echo $request;
-echo $u,'<br>';
-echo $pw, '<br>';
-echo $t;
+
 
 
 
 // Make connection as client
-$client = new rabbitMQClient("RabbitMQ.ini", "testServer");
+$client = new rabbitMQClient("API.ini", "testServer");
 
 // Send request to rabbit server queue
 $response = $client -> send_request($request);
 $response = json_encode($response);
 
 
-//echo $response;
 
+//print_r($response);
 // Print respone for debugging purposes
 //print_r($response);
 
-
-
+$response = str_replace("&","%26", $response);
+$response = str_replace("#","%23", $response);
+echo $response;
 
 
 //echo $response;
-if ($response == 0)
+if ($response != null)
 {
-    //echo "BAD LOG!";
+    echo "Searching...";
     
-    $d = 1;
-    header("refresh: $d; url= http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.php?response=$response");
+    $d = 5;
+    header("refresh: $d; url= http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/results.php?res=$response");
     //echo "Maybe this time";
-}
+}/*
 elseif ($response == 1)
 {
     $d = 1;
     //echo "GOOD LOG!";
     //echo $response;
-    header("refresh: $d; url= http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.php?response=$response");
+    header("refresh: $d; url= http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.php?user=$u&pass=$pw");
 }
 elseif ($response == 2)
 {
@@ -86,11 +82,11 @@ else{
     $d = 2;
     echo "New Account Has Been Created!";
     //echo $response;
-    header("refresh: $d; url= http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.php?response=$response");
+    header("refresh: $d; url= http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.php?user=$u&pass=$pw");
     
     
 }
-
+ */
 
 
 

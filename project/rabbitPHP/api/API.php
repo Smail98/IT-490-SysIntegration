@@ -46,7 +46,7 @@ extract($re);
 //print_r($drinks);
 
 extract($drinks);
-print_r($drinks['0']);
+//print_r($drinks['0']);
 //print_r($drinks['2']);
 
 $size = sizeof($drinks);
@@ -63,9 +63,9 @@ for($i=0; $i<$size; $i++)
 	array_push($dThumb, $strDrinkThumb);
 	array_push($dID, $idDrink);
 }
-//print_r($dName);
+print_r($dName);
 //print_r($dThumb);
-print_r($dID);
+//print_r($dID);
 
 //extract($drinks['2']);
 //echo $strDrink;
@@ -85,7 +85,7 @@ $database=print_r(json_decode($respons),true);
 
 
 //echo $strDrink;
-$database=$client->publish($database);//upload to queue
+$database=$client-> publish($dName);//upload to queue
 
 //MQshovel queues te
 //PUT /api/parameters/shovel/%2f/my-shovel

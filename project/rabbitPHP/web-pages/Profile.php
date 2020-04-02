@@ -1,11 +1,13 @@
+
 <?php
+/*
 session_start();
 
 include ("fncs.php");
 
 seshCheck();
 
-
+ */
 ?>
 
 
@@ -33,11 +35,11 @@ seshCheck();
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="http://ec2-3-17-185-64.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/Search.php">Home</a></li>
-        <li class="active"><a href="http://ec2-3-17-185-64.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/Profile.php">Profile</a></li>
+        <li class="active"><a href="http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/Search.php">Home</a></li>
+        <li class="active"><a href="http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/Profile.php">Profile</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://ec2-3-17-185-64.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        <li><a href="http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
       </ul>
     </div>
   </div>
