@@ -57,7 +57,7 @@ seshCheck();
 </nav>
 
 <div class="container">
-    <br action="http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/CustomRecipes/CustomRecipe.php" class="form-inline my-2 my-lg-0" >
+    <br action="http://ec2-18-216-75-25.us-east-2.compute.amazonaws.com/rabbitPHP/back-end/CustomRecipe.php" class="form-inline my-2 my-lg-0" >
         <h3>Submit your recipe:</h3>
         <label for="DrinkName">Cocktail Name:</label><br>
         <input type="text" id="DrinkName" name="DrinkName"><br>
