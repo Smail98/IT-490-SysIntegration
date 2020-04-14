@@ -1,8 +1,8 @@
 <?php
 
 $hostname = "localhost";    //CHANGE THESE TO MATCH YOUR
-$username = "testU";     //OWN DB CREDS
+$username = "user";     //OWN DB CREDS
 $password = "pass";
-$project = "testDB";
+$project = "db";
 
 ?>

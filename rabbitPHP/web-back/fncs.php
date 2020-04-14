@@ -53,7 +53,7 @@ function newAccount($user,$pass,$fname,$lname)
    
 
 
-    //mysqli_close($db);	//was uncommented before (gonna test something 3/30/20)
+    mysqli_close($db);	//was un-commented
 
 }
 
@@ -220,9 +220,16 @@ function requestProcessor($request)
     }
     $response = array('returnCode'=>$rC,'message'=>$m,'payload'=>$p);
     extract($response);
-    if($returnCode > 0)
+    if($returnCode > 0 && $returnCode < 7 )
     {
         return $returnCode;
+    }
+    elseif($returnCode == 7)
+    {
+	    $random = array();
+	    array_push($random, $returnCode);
+	    array_push($random, $message);
+	    return $random;
     }
     else
     {
@@ -238,7 +245,7 @@ function seshCheck()
     {
         $d = 3;
         echo "Please Login First -- Redirecting...";
-        header("refresh: $d; url= http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.html");
+        header("refresh: $d; url= http://ec2-18-224-23-159.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.html");
         exit();
     }
 }
@@ -252,7 +259,5 @@ function getData($o)
     $o1 = mysqli_real_escape_string($db,$o1);
     return $o1;
 }
-
-
-
 ?>
+
