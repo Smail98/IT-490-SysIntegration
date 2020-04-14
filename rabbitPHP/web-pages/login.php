@@ -4,24 +4,32 @@ session_start();
 
 
 $username = $_REQUEST['user'];
+//$password = $_REQUEST['pass'];
 
-$password = $_REQUEST['pass'];
+$res = $_REQUEST['response'];
+
+//echo $res;
+//echo $username;
 
 
-include ('fncs.php');
+
+//include ('fncs.php');
 
 
-if(!doLogin($username, $password))
+if($res < 1)
                 {
-                    //echo "WTF IS YOU DOING!";
-                    header("refresh: 4; url = http://localhost/rabbitPHP/web-pages/login.html");
+                    echo "INVALID LOGIN - TRY AGAIN";
+                    header("refresh: 3; url = http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.html");
                     
                 }
                 else
                 {
-                    $_SESSION ["logged"] = true;
+			$_SESSION ["user"] = $username;
+			$_SESSION ["logged"] = true;
+			echo "Logging In!";
+			
    
-                    header("refresh: 2; url = http://localhost/rabbitPHP/web-pages/Search.php");
+                    header("refresh: 1; url = http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/Search.php");
                 }                  
 
 ?>
