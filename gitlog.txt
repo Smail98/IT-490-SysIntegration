@@ -5,23 +5,6 @@
 * | 011a99c (Updated web files-For HTTPS) ---  Also finishing touches on Front End
 |/
 * 5c9c455 Update fncs.php
-* f18ca79 Delete PackageGet.py
-* 6286872 Delete PackageBroker.py
-* 9f8dcd9 Delete RabbitConn.py
-* 6daf83c Delete installer.sh
-* b586a45 Delete manifest.json
-* 3f98782 Delete sendPackage.exp
-* 7d7f903 Delete install.py
-* 1acd597 Create sendPackage.exp
-* baf78f7 Create manifest.json
-* 664a203 Create installer.sh
-* e7f3bba Create install.py
-* b559bdb Create RabbitConn.py
-* bde4288 Create PackageGet.py
-* a4e7842 Create PackageBroker.py
-* 5854769 Create fe-desc-server.service
-* 034ba54 Create fe-server.service
-* 5a47b93 Create backend.service
 * 57cf006 Delete backend.service
 * 621e8e2 systemd
 * e1d259c Delete backend.service
