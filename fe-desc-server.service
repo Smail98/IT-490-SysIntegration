@@ -1,0 +1,15 @@
+[Unit]
+Description=back end server file api
+Requires=network-online.target
+Requires=mysql.service
+Requires=rabbitmq-server.service
+After=network-online.target
+After=network.target
+After=rabbitmq-server.service
+
+[Service]
+ExecStart=/usr/bin/php /home/ubuntu/git/IT-490-SysIntegration/project/description.php
+
+[Install]
+WantedBy=multi-user.target
+
