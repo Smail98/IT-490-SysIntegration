@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 
@@ -11,33 +11,60 @@ $sql = "SELECT id FROM Accounts WHERE username='$u' ";
 $result = mysqli_query($db,$sql);
 $num = mysqli_num_rows($result);
 if ($num = 1){
-	$row = mysqli_fetch_row($result);
-	$id = $row[0];
-	$db = getDBconnect();
-	$query = "SELECT DrinkName, AlcType, Ingredients, Instructions from CustomRep WHERE id = '$id'";
-	$results = mysqli_query($db, $query);
-	$nums = mysqli_num_rows($results);
-	if ($nums > 0){
-		echo "Pulling Saved Items. ";
-		$saved_items = array();
-		while ($rows = mysqli_fetch_assoc($results)){
-			//array_push($saved_items, $rows);
-			$saved_items = [$rows];
-		
-		}
-		print_r($saved_items);
-		return $saved_items;
-	}else {
-		echo "No Saved Items.";
-		return false;
-	}
-	
-	}
+        $row = mysqli_fetch_row($result);
+        $id = $row[0];
+        $db = getDBconnect();
+        $query = "SELECT DrinkName, AlcType, Ingredients, Instructions from CustomRep WHERE id = '$id'";
+        $results = mysqli_query($db, $query);
+        $nums = mysqli_num_rows($results);
+        if ($nums > 0){
+                echo "Pulling Saved Items. ";
+                $saved_items = array();
+                while ($rows = mysqli_fetch_assoc($results)){
+                        //array_push($saved_items, $rows);
+                        $saved_items = [$rows];
+
+                }
+                print_r($saved_items);
+                return $saved_items;
+        }else {
+                echo "No Saved Items.";
+                return false;
+        }
+
+        }
 
 else {
-	$id = 0;
-	echo "No user found. ";
-	return false;
+        $id = 0;
+        echo "No user found. ";
+        return false;
+}
+}
+
+
+function ratedrink($rating){
+$db = getDBconnect();
+echo($rating);
+$query = "INSERT INTO drink_rating(rating) values ($rating)";
+$r = mysqli_query($db, $query);
+echo($r);
+if ($r === TRUE){
+        echo "Rating saved.";
+}else{
+        echo "No Rating Saved";
+}
+$sql = "SELECT rating from drink_rating ORDER BY RAND() LIMIT 1";
+$AVGRATE = mysqli_query($db, $sql);
+if (mysqli_num_rows($AVGRATE) > 0){
+        echo "found it";
+        while($row=mysqli_fetch_array($AVGRATE)){
+                return($row);
+        }
+}
+
+else{
+        echo "no record";
+        return false;
 }
 }
 
@@ -48,28 +75,27 @@ $db = getDBconnect();
 $query = "SELECT strDrink, stralc from cocktails ORDER BY RAND() LIMIT 1";
 $result = mysqli_query($db, $query);
 if (mysqli_num_rows($result) > 0){
-	echo "found something ";
-	while ($row = mysqli_fetch_array($result)){
-		//array_push($resultset,$row);
+        echo "found something ";
+        while ($row = mysqli_fetch_array($result)){
+                //array_push($resultset,$row);
 
-		return $row;
-	}
+                return $row;
+        }
 
 
 
-	//print_r($resultset);
-	//echo "<h2> Try this on us </h2>";
-	//foreach($resultset as $item)
-	//	echo $item [0] . "<br>";
-	//	echo $item [1] . "<br>";
-	//return $resultset;
+        //print_r($resultset);
+        //echo "<h2> Try this on us </h2>";
+        //foreach($resultset as $item)
+        //      echo $item [0] . "<br>";
+        //      echo $item [1] . "<br>";
+        //return $resultset;
 }
 else {
-	echo "No recommendations.";
-	return false;
+        echo "No recommendations.";
+        return false;
 }
 }
-
 
 function pullid($u,$DrinkName,$alctype,$ingredients,$instructions)
 {
@@ -82,27 +108,40 @@ $num = mysqli_num_rows($result);
 
 
 if ($num = 1){
-	$row = mysqli_fetch_row($result);
-	$id = $row[0];
-	$recipe = "INSERT INTO CustomRep(DrinkName, AlcType, Ingredients, Instructions, id) VALUES ('$DrinkName','$alctype', '$ingredients', '$instructions', '$id')";
-	if (!mysqli_query($db,$recipe)){
-    		die('Error:' .mysqli_error());
-	}
+        $row = mysqli_fetch_row($result);
+        $id = $row[0];
+        $recipe = "INSERT INTO CustomRep(DrinkName, AlcType, Ingredients, Instructions, id) VALUES ('$DrinkName','$alctype', '$ingredients', '$instructions', '$id')";
+        if (!mysqli_query($db,$recipe)){
+                die('Error:' .mysqli_error());
+        }
 
-	echo "Your recipe was saved.";
-	mysqli_close($db);
+        echo "Your recipe was saved.";
+        mysqli_close($db);
 
-	return true;
+        return true;
 }
 else{
-	$id = 0;
-	return false;
- 
+        $id = 0;
+        return false;
+
 
 }
 }
 
 
+function highlight()
+{
+        $db= getDBconnect();
+        $sql= "SELECT drink_name FROM drink_rating WHERE rating > 3 order by RAND() LIMIT 1";
+        $results= mysqli_query($db,$sql);
+        if (mysqli_num_rows($results)>0){
+                echo "found something";
+                while($row=mysqli_fetch_array($results)){
+                return $row['drink_name'];
+                }
+        }
+
+}
 
 // AUTH FOR DB [JL]
 function getDBconnect()
@@ -127,7 +166,7 @@ $sql = "SELECT id FROM Accounts WHERE username='$u'  limit 1";
 $result = mysqli_query($db,$sql);
 $num = mysqli_num_rows($result);
     $db = getDBconnect();    //connect 2 DB
-    
+
     //Select by ID
     //$id = null;
     $s2 = "SELECT id FROM Accounts WHERE username= '$user'";
@@ -143,22 +182,22 @@ $num = mysqli_num_rows($result);
     else
    {
          //SQL STATEMENT
-        $s = "INSERT INTO Accounts (username, password, firstname, lastname) VALUES 
+        $s = "INSERT INTO Accounts (username, password, firstname, lastname) VALUES
         ('$user', '$pass', '$fname', '$lname')";
         $result = mysqli_query($db, $s);
 
         echo ' New User has been created!';
-    
-        if (!$result) 
+
+        if (!$result)
         {
             echo mysqli_error($db);
         }
         return true;
     }
-   
 
 
-    mysqli_close($db);	//was un-commented
+
+    mysqli_close($db);  //was un-commented
 
 }
 
@@ -190,14 +229,14 @@ $num = mysqli_num_rows($result);
 
             echo "    User: $user | ";
             echo "First Name: $fname  |";
-            echo "Last Name: $lname   "; 
+            echo "Last Name: $lname   ";
 
         }
     }
     else{
         echo "     No Valid Users to Show";
     }
-    
+
     //GET ACCOUNT DETAILS FROM DB/ADD TO RESPONSE
     return array(
         "username" => $user,
@@ -211,13 +250,13 @@ $num = mysqli_num_rows($result);
 
 function doLogin($user, $pass)
 {
-   
+
 
     # Run database query here to validate credentials
     $db = getDBconnect();
-    $s = "SELECT * FROM Accounts WHERE username='$user' AND 
+    $s = "SELECT * FROM Accounts WHERE username='$user' AND
     password='$pass'";
-    $result = mysqli_query($db, $s);
+ $result = mysqli_query($db, $s);
 
     /*$yes = false;
     $id = "";
@@ -232,35 +271,35 @@ function doLogin($user, $pass)
     }
     elseif($user == 'admin' && $pass == 'pass')
     {
-    
+
         echo 'Logging in...  ';
         return true;
-        
+
     }
     else
     {
-       
-        echo 'Logging in...  ';
-	return true;
 
-        
-        
+        echo 'Logging in...  ';
+        return true;
+
+
+
     }
-    
+
     //GET ACCOUNT DETAILS FROM DB/ADD TO RESPONSE
     /*return array(
         "success" => $yes, //or "yes"
         "id" => $id,
         "text" => $text,*/
-   
-   
+
+
 }
 
 
 function authorize($user, $pass)
 {
     $db = getDBconnect();
-    $s = "SELECT * FROM Accounts WHERE username='$user' AND 
+    $s = "SELECT * FROM Accounts WHERE username='$user' AND
     password='$pass' ";
 
     ($result = mysqli_query($db,$s) ) or die (mysqli_error($db) );
@@ -283,38 +322,59 @@ function requestProcessor($request)
     $p = "empty";
     // Perform appropriate action depending on type
     switch ($request['type']) {
-	    // Authenticate
+            // Authenticate
 
     case "random":
 
-	if(recommend() == false){
-		$p = "Recommend fail";
-		$rC = 6;
-		$m = "fail";
-	}else{
-		$p = "Recommend list created";
-		$rC = 7;
-		$m = recommend();
-		//array_push($m, recommend());
-	}
-	break;
+        if(recommend() == false){
+                $p = "Recommend fail";
+                $rC = 6;
+                $m = "fail";
+        }else{
+                $p = "Recommend list created";
+                $rC = 7;
+                $m = recommend();
+                //array_push($m, recommend());
+        }
+        break;
 
-    case "drink":
-	    extract($request);
-	    $u=$user;
+    case "ratedrink":
+        $rating = $request['rating'];
+            if (ratedrink($rating) == false){
+                    $p = "Rating failed";
+                    $rC = 10;
+                    $m = "fail";
+            }else{
+                    $p = "Rating created";
+                    $rC = 11;
+                    $m = ratedrink($rating);
 
-	    if(pullid($u,$DrinkName,$alctype,$ingredients,$instructions) == false){
-		$p="ID pull fail";
-		$rC = 4;
-		$m = "fail";		
-	    }
-	    else
-	    {
-		    $p="ID pulled";
-		    $rC=5;
-		    $m = "success";
-	    }
-	break;	    
+            }
+            break;
+
+    /*case "highlight":
+            if (highlight())==false){
+                    $p="highlight failed";
+                    $rC= 12;
+                    $m="fail";
+            }
+	    
+        case "drink":
+            extract($request);
+            $u=$user;
+
+            if(pullid($u,$DrinkName,$alctype,$ingredients,$instructions) == false){
+                $p="ID pull fail";
+                $rC = 4;
+                $m = "fail";
+            }
+            else
+            {
+                    $p="ID pulled";
+                    $rC=5;
+                    $m = "success";
+            }
+            break;*/
             case "login":
                 if(!doLogin($request['username'], $request['password']))
                 {
@@ -324,17 +384,18 @@ function requestProcessor($request)
                 }
                 else
                 {
-                    $p = 'LOGIN SUCCESSFUL';
+                        $p = 'LOGIN SUCCESSFUL';
                     $rC = 1;
-                    $m = "success"; 
-                }                  
+                    $m = highlight();
+                }
                // $p = showAccount($request['username']);                 /*PAYLOAD FOR SHOWING ACCOUNT*/
                //$p = doLogin($request['username'], $request['password']);  /*PAYLOAD FOR LOGGING IN*/
                 break;
 
+
             case "register":
-                if(newAccount($request['username'],          
-                $request['password'], $request['firstname'], 
+                if(newAccount($request['username'],
+                $request['password'], $request['firstname'],
                 $request['lastname']) == false)
                 {
                     $p = 'REGISTER FAIL';
@@ -348,49 +409,80 @@ function requestProcessor($request)
                     $m = "success";
                 }
                 //$rC = 2;
-                
+
                 break;
 
-            
+
             case "saved":
-           	extract($request);
-           	$u = $user;
-        	if (saved($u) == false){
-                	    $p = "Saved fail";
-                    	$rc = 8;
-                   	 $m = "fail";
-        	}else{
-                	$p = "Saved Items pulled";
-                	$rc = 9;
-                	$m = saved($u);
-		}
+                extract($request);
+                $u = $user;
+                if (saved($u) == false){
+                            $p = "Saved fail";
+                        $rc = 8;
+                         $m = "fail";
+                }else{
+                        $p = "Saved Items pulled";
+                        $rc = 9;
+                        $m = saved($u);
+                }
 
-		break;
+                break;
 
-	    default:
-
-		break;
+            default:
+                echo "hello World";
+                break;
     }
     $response = array('returnCode'=>$rC,'message'=>$m,'payload'=>$p);
     extract($response);
-    if($returnCode > 0 && $returnCode < 7 )
+    if($returnCode > 1 && $returnCode < 7 )
     {
-	    return $returnCode;
+            return $returnCode;
     }
-    elseif($returnCode == 7)
-	 {
-//    		$random = array ();
-//		array_push($random, $returnCode);
-//		array_push($random,$message);
-		return $message;
-	
+    elseif($returnCode == 0){
+         return $returnCode;
+
     }
-    else {
-    	$returnCode = 0;
-	return $returnCode;
+     elseif($returnCode == 1){
+       $highlighter = array();
+             array_push($highlighter,$returnCode);
+       array_push($highlighter,$message);
+       //print_r($highlighter);
+       return $highlighter;
+
+
     }
 
- 
+
+    elseif($returnCode == 7)
+         {
+//              $random = array ();
+//              array_push($random, $returnCode);
+//              array_push($random,$message);
+                return $message;
+ }
+         elseif($returnCode == 11)
+         {
+//              $random = array ();
+//              array_push($random, $returnCode);
+//              array_push($random,$message);
+                return $message;
+
+    }
+
+
+        elseif($returnCode ==13)
+        {
+        return $message;
+        }
+
+
+    else {
+        $returnCode = 0;
+        return $returnCode;
+    }
+
+
+
 }
 
 function seshCheck()
@@ -415,3 +507,4 @@ function getData($o)
 }
 ?>
 
+                       
