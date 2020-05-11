@@ -1,0 +1,17 @@
+[
+    {
+        "id": "ubuntu",
+        "password": "",
+        "ip": "10.0.0.101"
+    },
+    {
+        "id": "ubuntu",
+        "password": "",
+        "ip": "10.0.0.100"
+    },
+    {
+        "id": "ubuntu",
+        "password": "",
+        "ip": "10.0.0.200"
+    }
+]
