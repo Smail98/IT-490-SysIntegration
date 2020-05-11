@@ -1,0 +1,55 @@
+*   d3c8185 Merge branch 'final' of https://github.com/Smail98/IT-490-SysIntegration into final
+|\
+| * 658984c Create finalsqldump.sql
+| * 7016999 Create trellolog.json
+* | 011a99c (Updated web files-For HTTPS) ---  Also finishing touches on Front End
+|/
+* 5c9c455 Update fncs.php
+* f18ca79 Delete PackageGet.py
+* 6286872 Delete PackageBroker.py
+* 9f8dcd9 Delete RabbitConn.py
+* 6daf83c Delete installer.sh
+* b586a45 Delete manifest.json
+* 3f98782 Delete sendPackage.exp
+* 7d7f903 Delete install.py
+* 1acd597 Create sendPackage.exp
+* baf78f7 Create manifest.json
+* 664a203 Create installer.sh
+* e7f3bba Create install.py
+* b559bdb Create RabbitConn.py
+* bde4288 Create PackageGet.py
+* a4e7842 Create PackageBroker.py
+* 5854769 Create fe-desc-server.service
+* 034ba54 Create fe-server.service
+* 5a47b93 Create backend.service
+* 57cf006 Delete backend.service
+* 621e8e2 systemd
+* e1d259c Delete backend.service
+* da762ee Create backend.service
+* 6d6aca6 added back-end file w/ sql dump
+* 0947acb Delete API.php
+* 9c7dab5 Delete .ingredient.php.swp
+* 7a593cb update
+*   4f562a8 update Merge branch 'Vmidterm' of https://github.com/Smail98/IT-490-SysIntegration into Vmidterm
+|\
+| * b101862 UPDATED web files + client php's needed
+* | ed3ac04 update
+|/
+* 0e090aa Update API.php
+* 867bbcd Update API.php
+* 76140c5 Update API.php
+* 133eba1 Rename API to API.php
+* aa862bc Added drinks DB sql sump
+* 314d9ca Create rabbitMQLib.inc
+* c56b8d2 SQL Dump for DB Accounts Table
+* 40edc8c Contains Website Files & Functions
+* 1984727 Update API
+* 14279be Create path.inc
+* 8049afe Create get_host_info.inc
+* 286d4e4 Create API.ini
+* cdaa79b Rename midterm to API
+* 520d0fa Create midterm
+* e59c00b Add files via upload
+* 9e6eacd Add files via upload
+* 7b73849 Add files via upload
+* 7ee9014 Initial commit
