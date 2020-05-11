@@ -71,7 +71,7 @@ if ($response != null)
      
     $d = 1;
    
-    header("refresh: $d; url= http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/results.php?n=$name&i=$id");
+    header("refresh: $d; url= https://www.drinksch.com/web-pages/results.php?n=$name&i=$id");
     //echo "Maybe this time";
 }
 

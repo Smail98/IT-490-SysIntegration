@@ -117,7 +117,7 @@ foreach($response as $item){
      
     $d = 1;
    
-    header("refresh: $d; url= http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/display.php?res=$f");
+    header("refresh: $d; url= https://www.drinksch.com/web-pages/display.php?res=$f");
     //echo "Maybe this time";
 }
 

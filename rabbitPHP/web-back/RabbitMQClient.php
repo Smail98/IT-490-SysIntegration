@@ -30,16 +30,15 @@ extract($request);
 $u = $username;
 $pw = $password;
 $t = $type;
-
-$pro = $_REQUEST['t'];
+$v = $val;
+$r = $rating;
 
 // Decode from JSON into object
- //$request = json_decode($request, true);
+// $request = json_decode($request, true);
 // print_r($request);
- //echo $request;
-//echo $u,'<br>';
-//echo $pw, '<br>';
-//echo $t;
+ 
+
+
 if ($request == null)
 {
 	$request = array("user"=>$pro, "type"=>"saved");
@@ -56,40 +55,51 @@ $response = $client -> send_request($request);
 //$response = json_encode($response);
 
 
+if (is_array($response) == 1)
+{
+	
+	extract($response);
+	$rc = $response[0];
+	$dn = $response[1];
+	
+}
+
+
+
+
 //echo $response;
 
 // Print respone for debugging purposes
 
 
-
 //print_r($response);
 //echo $response;
 
-
-
+//$s=sizeof($response);
+//echo $s;
 if ($response === 0)
 {
 	echo "BAD LOG!";
 
 	//echo $response;
     
-    $d = 1;
-    header("refresh: $d; url= http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.php?response=$response&user=$u");
+    $d = 4;
+    header("refresh: $d; url= https://www.drinksch.com/web-pages/login.php?response=$response&user=$u");
     //echo "Maybe this time";
 }
-elseif ($response == 1)
+elseif ($rc == 1)
 {
     $d = 1;
     echo "GOOD LOG!";
     //echo $response;
-    header("refresh: $d; url= http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.php?response=$response&user=$u");
+    header("refresh: $d; url= https://www.drinksch.com/web-pages/login.php?response=$rc&user=$u&drink=$dn");
 }
 elseif ($response == 2)
 {
     echo "User Already Exists -- Try Logging in";
 
     $d = 3;
-    header("refresh: $d; url= http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.html");
+    header("refresh: $d; url= https://www.drinksch.com/web-pages/login.html");
 }
 elseif ($response == 3)
 {
@@ -97,7 +107,7 @@ elseif ($response == 3)
     $d = 1;
     echo "New Account Has Been Created!";
     //echo $response;
-    header("refresh: $d; url= http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.php?response=$response&user=$u");
+    header("refresh: $d; url= https://www.drinksch.com/web-pages/login.php?response=$response&user=$u");
         
 }
 elseif ($response == 4)
@@ -106,7 +116,7 @@ elseif ($response == 4)
     $d = 2;
     echo "ID was not found -- Try Again";
     //echo $response;
-    header("refresh: $d; url= http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/CreateDrink.php");
+    header("refresh: $d; url= https://www.drinksch.com/web-pages/CreateDrink.php");
 }
 elseif ($response == 5)
 {
@@ -114,7 +124,7 @@ elseif ($response == 5)
     $d = 2;
     echo "Drink Was Successfully Created!";
     //echo $response;
-    header("refresh: $d; url= http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/CreateDrink.php");
+    header("refresh: $d; url= https://www.drinksch.com/web-pages/CreateDrink.php");
 }
 elseif ($response == 6)
 {
@@ -122,18 +132,30 @@ elseif ($response == 6)
     $d = 1;
     echo "STRANGE ERROR HAS OCCURED!   and i oop...";
     //echo $response;
-    header("refresh: $d; url= http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/recommend.php");
+    header("refresh: $d; url= https://www.drinksch.com/web-pages/recommend.php");
 }
-elseif (is_array($response) != null) 
+elseif (sizeof($response) == 4) 
 {
 
     $d = 1;
     echo "Generating... ball so hard mf wanna find me";
  
     extract($response);
-    header("refresh: $d; url= http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/recommend.php?drn=$response[0]&dra=$response[1]");
+    header("refresh: $d; url= https://www.drinksch.com/web-pages/recommend.php?drn=$response[0]&dra=$response[1]");
 }
+elseif (sizeof($response) == 2)
+{
 
+    $d = 1;
+    echo "Rating... that mf so hard rn :D";
+
+    extract($response);
+    header("refresh: $d; url= https://www.drinksch.com/web-pages/display.php?rate=$r&res=$v");
+}
+else
+{
+//	print_r($response);
+}
 
 
 

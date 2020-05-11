@@ -238,7 +238,7 @@ function seshCheck()
     {
         $d = 3;
         echo "Please Login First -- Redirecting...";
-        header("refresh: $d; url= http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/login.html");
+        header("refresh: $d; url= https://www.drinksch.com/web-pages/login.html");
         exit();
     }
 }

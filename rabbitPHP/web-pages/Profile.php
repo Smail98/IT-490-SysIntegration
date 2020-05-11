@@ -35,13 +35,13 @@ seshCheck();
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/Search.php">Home</a></li>
-        <li class="active"><a href="http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/Profile.php">Profile</a></li>
-      	<li class="active"><a href="http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/CreateDrink.php">Create a Drink</a></li>
-	<li class="active"><a href="http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/recommend.php">Our Recommendations</a></li>
+        <li class="active"><a href="https://www.drinksch.com/web-pages/Search.php">Home</a></li>
+        <li class="active"><a href="https://www.drinksch.com/web-pages/Profile.php">Profile</a></li>
+      	<li class="active"><a href="https://www.drinksch.com/web-pages/CreateDrink.php">Create a Drink</a></li>
+	<li class="active"><a href="https://www.drinksch.com/web-pages/recommend.php">Our Recommendations</a></li>
 	</ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        <li><a href="https://www.drinksch.com/web-pages/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
       </ul>
     </div>
   </div>

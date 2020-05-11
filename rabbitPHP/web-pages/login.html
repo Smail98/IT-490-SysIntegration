@@ -45,20 +45,21 @@
     <link href="signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
-    <form class="form-signin" action="http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/back-end/RabbitMQClient.php" method="POST">
+    <form class="form-signin" action="https://www.drinksch.com/back-end/RabbitMQClient.php" method="POST">
   <h1 class="h3 mb-3 font-weight-normal">Please Log In</h1>
   <label for="inputUser" class="sr-only">Username</label>
   <input type="text" id="inputUser" name="username" class="form-control" placeholder="Username" required >
   <label for="inputPassword" class="sr-only">Password</label>
   <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
   <input type="hidden" id="login" name="type" value="login" readonly >
+  <input type="hidden" id="highlight" name="type2" value="highlight" readonly >
     <!--<div class="checkbox mb-3">
     <label>
       <input type="checkbox" value="remember-me"> Remember me
     </label>
   </div> -->
   <i>Don't have an Account? </i>
-  <a href="http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/Register.html">Register here</a><br>
+  <a href="https://www.drinksch.com/web-pages/Register.html">Register here</a><br>
   <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
 </form>
 </body>

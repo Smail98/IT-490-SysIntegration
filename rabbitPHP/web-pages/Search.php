@@ -6,6 +6,7 @@ include ("fncs.php");
 seshCheck();
 
 $u = $_SESSION ["user"];
+$dn = $_SESSION ["drink"];
 
 ?>
 
@@ -34,25 +35,38 @@ $u = $_SESSION ["user"];
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/Search.php">Home</a></li>
-	<li class="active"><a href="http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/Profile.php">Profile</a></li>
-	<li class="active"><a href="http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/CreateDrink.php">Create a Drink</a></li>
-	<li class="active"><a href="http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/recommend.php">Our Recommendations</a></li>
+        <li class="active"><a href="https://www.drinksch.com/web-pages/Search.php">Home</a></li>
+	<li class="active"><a href="https://www.drinksch.com/web-pages/Profile.php">Profile</a></li>
+	<li class="active"><a href="https://www.drinksch.com/web-pages/CreateDrink.php">Create a Drink</a></li>
+	<li class="active"><a href="https://www.drinksch.com/web-pages/recommend.php">Our Recommendations</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/web-pages/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        <li><a href="https://www.drinksch.com/web-pages/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
       </ul>
     </div>
   </div>
 </nav>
   
 <div class="container">
-  <form class="form-inline my-2 my-lg-0" action="http://ec2-13-59-27-110.us-east-2.compute.amazonaws.com/rabbitPHP/back-end/RabbitClient2.php" method="get">
+  <form class="form-inline my-2 my-lg-0" action="https://www.drinksch.com/back-end/RabbitClient2.php" method="get">
    <h3>Add a Liquor</h3>
     <input id="search" name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>
-
 </div>
+<hr>
+
+<div class="container">
+<table>
+  <tr>
+    <th><h3 align="center">Drink Of The Day!</h3></th>
+  </tr>
+  <tr>
+    <td><h4 align="center"><?php echo $dn ?></h4></td>
+  </tr>
+</table>
+</div>
+
+
 </body>
 </html>
